@@ -5,28 +5,28 @@
 .thumb
 
 .section .boot2, "ax"
-    ldr r0, =XIP_SSI_SSIENR
-    ldr r1, =0x00000000
+    ldr r0, =XIP_SSI_SSIENR ;@ Set up SSIENR Register
+    ldr r1, =0x00000000 ;@ Disable the XIP SSI, Execute-In-Place Serial Flash Interface
     str r1, [r0]
 
-    ldr r0, =XIP_SSI_CTRLR0
-    ldr r1, =0x001F0300
+    ldr r0, =XIP_SSI_CTRLR0 ;@ Set up SSI CTRLR0 Register
+    ldr r1, =0x001F0300 ;@ Set SPI_FRF as DUAL, DFS_32 as 15, TMOD as EEPROM_READ
     str r1, [r0]
 
-    ldr r0, =XIP_SSI_BAUDR
-    ldr r1, =0x00000008
+    ldr r0, =XIP_SSI_BAUDR ;@ Set up BAUDR Register
+    ldr r1, =0x00000008 ;@ Set SSI Clock Divider as 8
     str r1, [r0]
 
-    ldr r0, =XIP_SSI_SPI_CTRLR0
-    ldr r1, =0x03000218
+    ldr r0, =XIP_SSI_SPI_CTRLR0 ;@ Set up SPI_CTRLR0 Register
+    ldr r1, =0x03000218 ;@ Set ADDR_L as 24b
     str r1, [r0]
 
-    ldr r0, =XIP_SSI_CTRLR1
-    ldr r1, =0x00000000
+    ldr r0, =XIP_SSI_CTRLR1 ;@ Set up CTRLR1 Register
+    ldr r1, =0x00000000 ;@ Set number of data frames as 0
     str r1, [r0]
 
-    ldr r0, =XIP_SSI_SSIENR
-    ldr r1, =0x00000001
+    ldr r0, =XIP_SSI_SSIENR ;@ Set up SSIENR Register
+    ldr r1, =0x00000001 ;@ Enable XIP SSI
     str r1, [r0]
 
     ldr r4, =0x10000100  ;@ Source address (FLASH)
