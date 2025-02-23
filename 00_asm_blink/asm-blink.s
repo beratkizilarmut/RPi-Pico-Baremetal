@@ -23,19 +23,19 @@ _reset:
 	movs r2, #32          ;@ IO_BANK0
 	str  r2, [r3, #0]
 
-	ldr  r3, =0x400140cc  ;@IO_BANK0.GPIO25_CTRL
+	ldr  r3, =0x40014084  ;@IO_BANK0.GPIO25_CTRL
 	movs r2, #5           ;@Function 5 (SIO)
 	str  r2, [r3, #0]
 
 	ldr  r3, =0xd0000020  ;@SIO_BASE.GPIO_OE
-	movs r2, #128         ;@GPIO25
-	lsl  r2, r2, #18
+	movs r2, #1           ;@GPIO16
+	lsl  r2, r2, #16
 	str  r2, [r3, #0]
 
 _blink:
 	ldr  r3, =0xd000001c  ;@SIO_BASE.GPIO_XOR
-	movs r2, #128         ;@GPIO25
-	lsl  r2, r2, #18
+	movs r2, #1           ;@GPIO16
+	lsl  r2, r2, #16
 	str  r2, [r3, #0]
 
 	ldr r0, =100000
