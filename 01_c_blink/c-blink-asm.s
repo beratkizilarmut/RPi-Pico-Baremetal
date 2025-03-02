@@ -28,8 +28,9 @@ _reset:
 	str  r2, [r3, #0]
 
 	ldr  r3, =0xd0000020  ;@SIO_BASE.GPIO_OE
-	movs r2, #1         ;@GPIO25
-	lsl  r2, r2, #16
+	movs r2, #1         
+	##lsl  r2, r2, #16      ;@GPIO16
+	lsl  r2, r2, #25      ;@GPIO25
 	str  r2, [r3, #0]
 	
 	b main
